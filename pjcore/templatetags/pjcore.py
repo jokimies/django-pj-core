@@ -3,16 +3,31 @@ from django import template
 
 register = template.Library()
 
-PORTFOLIO_DEFAULT_COLORS = (
+PERCENTAGE_DEFAULT_COLORS = (
     'green',
     'red',
 )
 
 @register.filter()
 def colorize_percentage(value):
-
+    """
+    Colorizes value depending on if it is less (default color red) or more
+    (default color green) than zero. Indented usage in determining what
+    direction certain stock value changes during a day (hence the
+    _percentage postfix) 
     
-    print type(value)
+    Example:
+
+       {{ data.change|colorize_percentage }}
+
+    :param value: (percentage) value based on which colorizing is done
+    :type value: decimal.Decimal (or any that can be compared to 0)
+    :return: color name to be used as css class
+    :rtype: string
+    """
+    
     if value >= 0:
-        return PORTFOLIO_DEFAULT_COLORS[0]
+        return PERCENTAGE_DEFAULT_COLORS[0]
+    else:
+        return PERCENTAGE_DEFAULT_COLORS[1]
 
