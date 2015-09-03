@@ -3,10 +3,10 @@ from django import template
 
 register = template.Library()
 
-PERCENTAGE_DEFAULT_COLORS = (
-    'green',
-    'red',
-)
+PERCENTAGE_DEFAULT_CLASSES = {
+    'negative': 'negative',
+    'positive': 'positive'
+}
 
 @register.filter()
 def colorize_percentage(value):
@@ -27,7 +27,7 @@ def colorize_percentage(value):
     """
     
     if value >= 0:
-        return PERCENTAGE_DEFAULT_COLORS[0]
+        return PERCENTAGE_DEFAULT_CLASSES['positive']
     else:
-        return PERCENTAGE_DEFAULT_COLORS[1]
+        return PERCENTAGE_DEFAULT_CLASSES['negative']
 

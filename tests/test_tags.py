@@ -3,7 +3,7 @@
 
 from django.test import TestCase
 from django.template import Context, Template
-from pjcore.templatetags.pjcore_tags import PERCENTAGE_DEFAULT_COLORS
+from pjcore.templatetags.pjcore_tags import PERCENTAGE_DEFAULT_CLASSES
 
 class TagTests(TestCase):
 
@@ -15,13 +15,13 @@ class TagTests(TestCase):
     def test_colorize_percentage_less_than_zero(self):
 
         template = "{{ value | colorize_percentage}}"
-        output = PERCENTAGE_DEFAULT_COLORS[1]
+        class_negative = PERCENTAGE_DEFAULT_CLASSES['negative']
         context = { "value": -1.0 }
-        self.tag_test(template, context, output)
+        self.tag_test(template, context, class_negative)
 
     def test_colorize_percentage_greater_than_zero(self):
 
         template = "{{ value | colorize_percentage}}"
-        output = PERCENTAGE_DEFAULT_COLORS[0]
+        class_positive = PERCENTAGE_DEFAULT_CLASSES['positive']
         context = { "value": 1.0 }
-        self.tag_test(template, context, output)
+        self.tag_test(template, context, class_positive)

@@ -21,13 +21,24 @@ Quickstart
 
 Install django-pj-core::
 
-    pip install django-pj-core
+  pip install django-pj-core
 
 Then use it in a template::
 
-    {% load pjcore_tags %}
+  {% load pjcore_tags %}
 
-    ... class="{{ value | colorize_percentage }}" ...
+  <span class="{{ value | colorize_percentage }}" ... </span>
+
+CSS::
+
+  span.negative {
+    color: #CC3333;
+  }
+
+  span.positive {
+    color: #88FF88;
+  }
+
 
 Will return string `red` (negative ``value`` or `green` (positive ``value``)
 
